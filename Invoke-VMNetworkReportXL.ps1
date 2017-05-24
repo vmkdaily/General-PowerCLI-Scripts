@@ -28,7 +28,8 @@ When targeting large numbers of vCenters, the fallback feature speeds up.
 String. The full path including file extension for your output report (i.e. "c:\temp\VMReport.csv")
 
 .PARAMETER PassThrough
-Switch. Not related to authentication.  If reporting to CSV (default) then activating this switch will also return results on screen (i.e. returns the report object).
+Switch. Not related to authentication. If reporting to CSV, then activating this switch will also
+return results on screen (i.e. returns the report object).
 
 .PARAMETER AutoLaunch
 Switch. Uses Invoke-Item to launch the CSV report upon completion
@@ -135,6 +136,8 @@ Param(
     
     #Auto Launch CSV Report
     [switch]$AutoLaunch,
+    
+    #VI Location (i.e. Name of folder, cluster, resource pool, or datacenter)
     [ValidateScript({
         If(-Not(Test-Path -Path $_)) {
             return $true}
@@ -142,8 +145,6 @@ Param(
             Throw 'Location should be VIContainer name (not a path!)'
         }
     })]
-
-    #VI Location (i.e. Name of folder, cluster, resource pool, or datacenter)
     [string]$Location,
 
     #optional Credential from path (i.e. 'c:\credential.enc.xml')
